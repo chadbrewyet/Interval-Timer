@@ -400,6 +400,9 @@
     event.preventDefault();
     if (state === 'running' || state === 'paused' || !readSettings()) return;
 
+    if ('audioSession' in navigator) {
+      navigator.audioSession.type = 'playback';
+    }
     const Audio = window.AudioContext || window.webkitAudioContext;
     if (!audio && Audio) audio = new Audio();
 
